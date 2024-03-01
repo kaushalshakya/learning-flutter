@@ -8,15 +8,16 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen', style: TextStyle(color: Colors.white)),
+        title:
+            const Text('First Screen', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue,
       ),
       body: Center(
           child: ElevatedButton(
-        child: Text('Go To Second Page'),
+        child: const Text('Go To Second Page'),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SecondScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const SecondScreen()));
         },
       )),
     );
