@@ -7,7 +7,7 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      title: Text('Second Screen', style: TextStyle(color: Colors.white)),
+      title: const Text('Second Screen', style: TextStyle(color: Colors.white)),
       backgroundColor: Colors.blue,
     ));
   }
