@@ -11,13 +11,30 @@ class FirstScreen extends StatelessWidget {
             const Text('First Screen', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-          child: ElevatedButton(
-        child: const Text('Go To Second Page'),
-        onPressed: () {
-          Navigator.pushNamed(context, '/secondscreen');
-        },
-      )),
+      drawer: Drawer(
+        backgroundColor: Colors.deepPurple[100],
+        child: const Column(
+          children: [
+            DrawerHeader(
+                child: Icon(
+              Icons.favorite,
+              size: 48,
+            )),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('H O M E'),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('P R O F I L E'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('S E T T I N G S'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
