@@ -1,51 +1,49 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:learning_flutter/screens/profile.dart';
+import 'package:learning_flutter/screens/settings.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Home extends StatefulWidget {
+  Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final List _screens = [
+    Center(
+      child: Text('Home'),
+    ),
+    Profile(),
+    Settings()
+  ];
+
+  int _selectedIndex = 0;
+
+  void navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen', style: TextStyle(color: Colors.white)),
+        title: Text('Home Screen', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue,
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.deepPurple[100],
-        child: Column(
-          children: [
-            DrawerHeader(
-                child: Icon(
-              Icons.favorite,
-              size: 48,
-            )),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('H O M E'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('P R O F I L E'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/profile');
-              },
-            ),
-            ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('S E T T I N G S'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/settings');
-                }),
-          ],
-        ),
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: navigateBottomBar,
+        currentIndex: _selectedIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings')
+        ],
       ),
     );
   }

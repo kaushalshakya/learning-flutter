@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:learning_flutter/screens/home_screen.dart';
@@ -6,7 +6,7 @@ import 'package:learning_flutter/screens/profile.dart';
 import 'package:learning_flutter/screens/settings.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,10 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      theme: ThemeData(primaryColor: Colors.blue),
+      home: Home(),
       routes: {
-        '/settings': (context) => const Settings(),
-        '/profile': (context) => const Profile()
+        '/settings': (context) => Settings(),
+        '/profile': (context) => Profile()
       },
     );
   }
