@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/screens/first_screen.dart';
-import 'package:learning_flutter/screens/second_screen.dart';
+import 'package:learning_flutter/screens/home_screen.dart';
+import 'package:learning_flutter/screens/profile.dart';
+import 'package:learning_flutter/screens/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const FirstScreen(),
-      routes: {'/secondscreen': (context) => const SecondScreen()},
+      home: const Home(),
+      routes: {
+        '/settings': (context) => const Settings(),
+        '/profile': (context) => const Profile()
+      },
     );
   }
 }
