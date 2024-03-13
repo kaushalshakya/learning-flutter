@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_flutter/screens/home_screen.dart';
 import 'package:learning_flutter/screens/profile.dart';
 import 'package:learning_flutter/screens/settings.dart';
+import 'package:learning_flutter/screens/user_input.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         '/settings': (context) => Settings(),
-        '/profile': (context) => Profile()
+        '/profile': (context) => Profile(),
+        '/input': (context) => UserInput()
       },
     );
   }
