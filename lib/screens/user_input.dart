@@ -12,25 +12,33 @@ class UserInput extends StatefulWidget {
 class _UserInputState extends State<UserInput> {
   //text editing controller to access user input
   TextEditingController inputController = TextEditingController();
-
+  String greetingMessage = '';
   void handleInput() {
-    if (inputController.text.trim().isNotEmpty) {
-      print(inputController.text);
-    }
+    setState(() {
+      (inputController.text.trim().isNotEmpty)
+          ? greetingMessage = 'Hello ${inputController.text.trim()}'
+          : greetingMessage = '';
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: inputController,
-            ),
-            ElevatedButton(onPressed: handleInput, child: Text('Submit'))
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(greetingMessage),
+              TextField(
+                controller: inputController,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Write anything'),
+              ),
+              ElevatedButton(onPressed: handleInput, child: Text('Submit'))
+            ],
+          ),
         ),
       ),
     );
