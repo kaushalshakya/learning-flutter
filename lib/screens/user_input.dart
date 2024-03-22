@@ -12,12 +12,20 @@ class UserInput extends StatefulWidget {
 class _UserInputState extends State<UserInput> {
   //text editing controller to access user input
   TextEditingController inputController = TextEditingController();
-  String greetingMessage = '';
+  List<String> todos = [];
   void handleInput() {
+    final todo = inputController.text.trim();
     setState(() {
-      (inputController.text.trim().isNotEmpty)
-          ? greetingMessage = 'Hello ${inputController.text.trim()}'
-          : greetingMessage = '';
+      if (todo.isNotEmpty) {
+        todos.add(todo);
+        inputController.clear();
+      }
+    });
+  }
+
+  void handleClear() {
+    setState(() {
+      todos.clear();
     });
   }
 
@@ -30,13 +38,24 @@ class _UserInputState extends State<UserInput> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(greetingMessage),
               TextField(
                 controller: inputController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Write anything'),
               ),
-              ElevatedButton(onPressed: handleInput, child: Text('Submit'))
+              SizedBox(height: 10),
+              ElevatedButton(onPressed: handleInput, child: Text('Submit')),
+              SizedBox(height: 10),
+              Expanded(
+                  child: ListView.builder(
+                      itemCount: todos.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(title: Text(todos[index]));
+                      })),
+              FloatingActionButton(
+                onPressed: handleClear,
+                child: Icon(Icons.delete),
+              )
             ],
           ),
         ),
